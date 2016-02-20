@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="GreatBallsOfFire : A binary mood lamp for all moods binary" />
+    <meta name="description" content="MathBall : Hacking some sense into the Little Tikes Goofy Giggles ..." />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>GreatBallsOfFire</title>
+    <title>MathBall</title>
   </head>
 
   <body>
@@ -18,123 +18,65 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/2dom/GreatBallsOfFire">View on GitHub</a>
 
-          <h1 id="project_title"GreatBallsOfFire</h1>
-          <h2 id="project_tagline">Great Balls Of Fire</h2>
+          <h1 id="project_title"MathBall</h1>
+          <h2 id="project_tagline">MathBall</h2>
 
-           
+
         </header>
     </div>
 
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h2>A story of space invasion and bedside lighting ...</h2>
+        <h2>Hacking some sense into the Little Tikes Goofy Giggles ...</h2>
 
 <p><img src="https://raw.github.com/2dom/GreatBallsOfFire/master/pics/small_ball_light.jpg" alt="Ball Daylight"> </p>
-<p>This project is actually two projects. The first one is an ultra low cost LCD projector. The second one is a bedside table lamp that shows the time.</p>
+<p>The Little Tikes Goofy Giggles is a really strange toy. The whole thing is obviously designed to attract the attention of overstimulated 2-3 three year olds by being colorful, loud and fun. It succeeds in some respect by grabbing one's attention but unfortunately the fun is short lived ... all it does is giggle and go plop!</p>
 
-<p>The first inspiration for a super cheap projector came from the documentary "Exit through the gift shop" about the history of street art and/or a cynical view on the art scene in general. One of the shown street artist was "Invader". His thing was to glue little space invader mosaics to structures around the city. He considers himself a "hacker of public space spreading a virus of mosaic".</p>
+<p>However, the giggles has some overly complex internals that beg to be hacked. So when my kids and wife sorted it out to be binned I decided to give it a second chance. <br>I had a single free weekend to turn it into something useful ...</p>
+
+  <p><strong>Features:</strong></p>
+
+  <ul>
+  <li>Lovely monster button style game controller</li>
+  <li>3 action packed games</li>
+  <li>Single-player and multi-player with level system</li>
+  <li>5 different faces</li>
+  <li>Extra low fidelity sound effects</li>
+  <li>Would survive a nuclear blast</li>
+  </ul>
+
+<h2>Hardware</h2>
+
+<p>The goofy giggles has a few things going for it ... it has three buttons, a battery compartment, a speaker, overly complex mechanics as well as a fancy release mechanism that allows the buttons to pop back out again. On top of that, it appears to be indestructable since it survived the steep-upper-staircase-crash-test a few times.</p>
 
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Invader_in_Argentina.jpg"></p>
 
-<p>I simply loved the idea to place little pieces of art in various location around the city for people to discover. However, I found the medium of mosaic a bit limited by its static nature. There must be a better way to hack public spaces visually. So instead of using mosaics, I got a bit obsessed with the idea of using projections. My version would consist of little solar powered projectors hidden in public spaces, broadcasting messages and animations at night whilst charging at daytime. </p>
+<p>From the electronics perspective, I found a little PCB with a single COB chip inside that was in charge of sound, sensing and actuation. Appart from that I found 4 switches (3 to detect button press/lock events and one to detect a successfull button release event), a motor (to drive the release machanism) and a speaker. The thing to do was obvious ... replace the PCB with some microcontroller and use this beautifully overengineered toy for something awesome.</p>
 
 <p><img src="https://raw.github.com/2dom/GreatBallsOfFire/master/pics/small_projector_closeup.jpg" alt="Projector closeup"></p>
 
-<p>In order to make this feasible, the whole set-up would have to be cheap ... dead cheap. Unattended projection hardware pumping out awesome imagery would most likely be stolen or destroyed within a very short amount of time.  </p>
+<p>I had my workbench littered with various LCDs from a previous project so it took only a short amount of time to find one with the right size (Nokia 5110), cut a hole in the ball and expoxy it in place.</p>
 
-<p>This lead to the projector as described below.</>
+<p>As the brains I chose an Arduino Mini Pro knock-off from china, partly because I wanted a low power design and partly because I didn't know if some of the code I wanted to use would work with my favorite ESP8266. The electronics part is very simple really ... I put an ULN2003 on a small protoyping board and soldered it upside down onto the Arduino Mini Pro (the reset switch still works that way btw). The ULN2003 is used to drive the motor, the speaker as well as LCD. All the swiches are directly connected to Arduino's GPIO pins.</>
 
-<p>Unfortunately, once I was finished with the projector part I realized that although it works, it is in fact unusable for the intended purpose. The core problem is a maximum projection distance of ~15cm, reducing the amount of suitable locations in a city to virtually zero.</p>
-
-<p>So I had a projection solution but no application. </p>
-
-<p>What finally gave me the idea to use the projector in my lamp project were the other properties of the projector ... round projection image and extremely low resolution - a perfect fit.</p>
-
-<p>I hope you enjoy the build.</p>
+<p>Finally, I used some filler and sandpaper to smoothen the gap between the LCD and the plastic. A lousy paint job and voilà ... hardware done.</p>
 
 
+<h2>Software</h2>
 
+<p>The game I came up with is rather simple ... but in a good way. I wanted to build something that allows the kids to take mathematics into their own hands (literaly). For it to have any chance at all, it also had to be fun and approachable. It works like this: random mathematics questions are presented and three possible answers can be selected using one of the three buttons.<br>
+<br>There is a choice of multiplication, addition and subtraction questions. To spice things up, visuals and sound effects let the player know if the answer is correct or not (check out the video at the end).</p>
 
-
-
-
-<p><strong>Features:</strong></p>
-
-<ul>
-<li>Lovely monster pixel style back-projection display with virtually unusable resolution</li>
-<li>180-ish° field of view</li>
-<li>Space Invaders!!!</li>
-<li>Glows in the dark</li>
-<li>Is made from half a phone and car parts</li>
-<li>Costs as much as your HDMI cable</li>
-</ul>
-
-<h2>The Projector</h2>
-
-<p>A projector is basically a light source illuminating an image plane that is then projected onto a projection surface using a projection lens. </p>
-
-<p>So in order to build the cheapest possible projector, I looked for the cheapest possible LCD and projection optics. The LCD part is easy: I used the trusty Nokia 5110 LCD display that costs ~2$ including shipping (I got 10).<br>
-To convert the Nokia 5110 LCD into a back-projection display, one merely has to remove the back-light including diffuser, peel away the reflection foil on the back and cut a big gaping hole in the PCB (requires rerouting of some/all traces). This process uses up about 3-5 of your acquired 5110 displays. I used an Arduino with the Adafruit LCD library to drive it. Great ... display done. (The picture shows a ST7735 colour display that I tested later - the procedure is identical for the Nokia 5110)</p>
+<p>I later added a level system that works like this (not shown in the video): If a player scores five correct answers in a row, the level is increased by one. The level hereby represents the numberspace the random questions are generated from. For example, level 5 in addion would mean the two summands are within the interval 0-5. Hence, the difficulty of the game adapts to the abilities of the player.</p>
 
 <img src="https://raw.github.com/2dom/GreatBallsOfFIre/master/pics/LCD_cutout.jpg" alt="LCD cutout"> </p>
 
-<p>The optics part was not quite so easy ... I experimented with zoom flashlights and magnifying glasses for a while which worked reasonable well. I abandoned the approach because of two simple reasons: 1) Zoom flashlights are a great light source however not that cheap to come by (we want to go ultra cheap remember) 2) magnifying glasses don't give you an evenly focused image if projected on a plain. Luckily I stumbled over a much better solution that solves both problems at once: Car logo projectors!!!</p>
+<p>I was bit anxious that the kids would just see it as another goofy giggles and ignore it shortly after. But as it turns out, the toy is one of the few things that can compete with the Frozen franchize in the focus group between 3 and 6 (the biggest honnor there is).<br>
+<br>I also like the fact that it is dealing well with frustration. When the kids get fed up with it, they slamm in the buttons, throw it on the carpet, press all buttons at once or simply sit on it ... the goofy takes it all.</p>
 
-<img src="https://raw.github.com/2dom/GreatBallsOfFIre/master/pics/car_logo_projector.jpg" alt="Car logo projector"> </p>
-
-<p>If your car happens to be logo projector-less (shocking) here is what it does: a miniature projector installed at the bottom of every door projects a static brand logo on the pavement once the door opens. This is awesome for various reasons:<br>
-These things are dead cheap (10$ a pair), they come with projection optics, condenser and best off all, an LED light source including constant current supply.</p>
-
-<p><img src="https://raw.github.com/2dom/GreatBallsOfFire/master/pics/small_projector_front.jpg" alt="Projector front"></p>
-
-<p> To make them usable as projection optics, a few modifications were required. First off, I opened the projector and removed the little plastic tube that holds all lenses including the logo disk. I then cut the optics tube at the precise location of the logo disk. I mounted the LED part onto a spare heat sink and wedged the condenser part of the optics between the modified LCD and the LED light source. The LCD was then fixed to the heat sink with the help of a few aluminium strips. Finally I 'mounted' the projection part of the optics on the LCD with the help of some trusty PVC tape. </p>
-
-<p><img src="https://raw.github.com/2dom/GreatBallsOfFire/master/pics/small_projector_mirror.jpg" alt="Projection mirror"></p>
-
-
-<p> I did some basic tests and found the projection quality to be infinitely better than my previous attempts with flashlights and minifying glasses. Nice contrast, crisp image ... maybe a bit dim. </p>
-
-<p> Once I finished the projector part I tested it against various surfaces and I realized very quickly that this projector is not really usable to project in open spaces. The projection optics and light source are optimized for a projection distance of something like ~15cm. Beyond that, images are increasingly dim, monstrous and out of focus. </p>
-
-<p>I played with some geometrical optics software to rectify this but eventually gave up. (I suck at optics)</p>
-
-<p>So I had created an awesome little projector but had no application for it.</p>
-
-<p>It was lying in a box for a few months before I found the perfect match for it.</p>
-
-<h2>The lamp</h2>
-
-<p>I need two vital things next to my bed: a night-readable clock and a dimmable light. The clock's purpose is to find out if there is still a point of going back to sleep when the kids woke me up (again) and the light's purpose is to bring said kinds back to bed without falling over stuff (possibly other kids). </p>
-
-<p>So I had the vague idea to build a clock/lamp hybrid thing but no idea how to make it look nice enought to pass the wife acceptance test. Nixie would have been awesome, but I am not crazy enough to put a high voltage SMPS next to my bed. So I kind of shelved the project until I saw one of these projection clocks on ebay.</p>
-
-<p>These clocks have a small LCD display plus projection optics to shine the current time onto the ceiling (neat). The steps "oh ... I can project stuff onto the ceiling" to "no I can't because it would be huge" to "oh ... why don't I stick it in a lamp instead" to "oh ... look at that ... nice lamps are round and so is my projection image" followed in rapid progression.    
-
-<p><img src="https://raw.github.com/2dom/GreatBallsOfFire/master/pics/small_projector_side.jpg" alt="Projector side"></p>
-
-<p>So IKEA was next. I found a 10 EUR spherical milky lamp of the right size that would double as a lamp housing and projection surface. However, in order to squeeze the projector into the lamp, I had to make a few modifications. First off, the projector turned out to be too big. When inside the lamp, the narrow distance between projection lens and projection surface would only give an image illuminating half of the lamp. A mirror installed at a 90° angle above the projection lens helped increasing that distance significantly. Now the lamp was illuminated perfectly.
-
-<p>Secondly, I removed the bulb, cable and fixture from the original lamp-base and replaced it with an aluminium strip holding the projector and mirror in place. The hole in the base provided enough room to accommodate the cables.</p>
-
-<p><img src="https://raw.github.com/2dom/GreatBallsOfFire/master/pics/small_projector_insert.jpg" alt="Projector insert"></p>
-
-<p>To drive the display, I modified some Adafruit LCD GFX library examples (space invader sprites!) that led to the result shown in the pictures. The clock is currently displaying the time with the occasional space invader character whizzing past. I thought about using the lamp as a scrolling display for twitter feeds etc. but the low resolution makes that a pain to watch. And it is a bedside lamp after all.</p>
-
-<img src="https://raw.github.com/2dom/GreatBallsOfFire/master/pics/small_ball_dark_pos_neg.jpg" alt="BigBallOfFire">
-
-
-<h2>Going forward</h2>
-
-<p>Although I love the monstrous b/w pixel-look of the lamp, the resolution is simply too low to be very useful. I experimented with higher resolution colour displays (ILI9341, etc.)  however they absorb much more light than the Nokia 5110. I also tried more powerful (mains powered) LED light sources which resulted in a black spot burned into the LCD (ouch). Active cooling might help but, again, I have to sleep next to the thing. I researched small, high resolution monochrome LCD displays but there does not seem to be a big variety of those anymore. The only ones I found were the Sharp monochrome memory LCDs which are too expensive to be butchered. Suggestions for low cost, high res monochrome displays are highly appreciated.</p>
-
-<p>As for other applications of the projector, I am playing with the thought of augmenting my <a href="http://2dom.github.io/the-radio/">vintage radio build</a> with a very simple status display. I tried projecting onto yellowed paper (for the vintage touch) and it looks totally awesome.</p> 
-
-<p>So this is it ... I would love to see the optics issue fixed and a bunch of these projectors popping up in public spaces :)</p> 
-
-<br>
-<p>The video below shows an intermediate version of the lamp (without mirror) using the Adafruit GFX LCD library demo (apologies for the crappy out-of-focus camera work).</p>
-<center><iframe width="560" height="315" src="http://www.youtube.com/embed/aMzmFDZYUsI" frameborder="0" allowfullscreen></iframe></center>
+<p>The video below shows an intermediate software version without the player and/or level system (see code).</p>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/B7vLmgH2PHQ" frameborder="0" allowfullscreen></iframe></center>
 
 <h2>Bill of materials</h2>
 
@@ -142,12 +84,11 @@ These things are dead cheap (10$ a pair), they come with projection optics, cond
 
 <ul>
 
-<li>Car Logo Projector (Aliexpress) - 4 EUR</li>
+<li>Little Tikes Goofy Giggles (second hand) - 5 EUR</li>
 <li>Nokia 5110 LCD (Aliexpress) - 2 EUR</li>
-<li>Borduino - 4 EUR</li>
-<li>12V power supply (Aliexpress) - 3 EUR</li>
-<li>FADO Lamp (IKEA) - 10 EUR</li>
-<li><strong>TOTAL: 23 EUR</strong></li>
+<li>Arduino Mini Pro 328 - 2 EUR</li>
+<li>ULN2003 - 0.1 EUR</li>
+<li><strong>TOTAL: 10 EUR</strong></li>
 </ul>
       </section>
     </div>
@@ -160,7 +101,7 @@ These things are dead cheap (10$ a pair), they come with projection optics, cond
       </footer>
     </div>
 
-    
+
 
   </body>
 </html>
