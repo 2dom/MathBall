@@ -33,14 +33,14 @@
 <p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/title.jpeg" alt="Ball Daylight"> </p>
 <p>The Little Tikes Goofy Giggles is a really strange toy. The whole thing is obviously designed to attract the attention of overstimulated 2-3 three year olds by being colorful, loud and fun. It succeeds in some respect by grabbing one's attention but unfortunately the fun is short lived ... all it does is giggle and go plop!</p>
 
-<p>However, the giggles has some overly complex internals that beg to be hacked. So when my kids and wife sorted it out to be binned I decided to give it a second chance. <br>I had a single free weekend to turn it into something useful ...</p>
+<p>However, the Giggles has some overly complex internals that just beg to be hacked. So when my kids and wife sorted it out to be binned I decided to give it a second chance. <br>I had a single free weekend to turn it into something useful ...</p>
 
   <p><strong>Features:</strong></p>
 
   <ul>
+  <li>Not 1, not 2 but 3 action packed games</li>
   <li>Lovely monster button style game controller</li>
-  <li>3 action packed games</li>
-  <li>Single-player and multi-player with level system</li>
+  <li>Single-player and multi-player modes with level system</li>
   <li>5 different faces</li>
   <li>Extra low fidelity sound effects</li>
   <li>Would survive a nuclear blast</li>
@@ -49,13 +49,14 @@
 <h2>Hardware</h2>
 
 <p>The goofy giggles has a few things going for it ... it has three buttons, a battery compartment, a speaker, overly complex mechanics as well as a fancy release mechanism that allows the buttons to pop back out again. On top of that, it appears to be indestructible since it survived the steep-upper-staircase-crash-test a few times.</p>
+<p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/pcb_closeup.jpg"></p>
 
 
-<p>From the electronics perspective, I found a little PCB with a single COB chip inside that was in charge of sound, sensing and actuation. Apart from that I found 4 switches (3 to detect button press/lock events and one to detect a successful button release event), a motor (to drive the release mechanism) and a speaker. The thing to do was obvious ... replace the PCB with some microcontroller and use this beautifully overengineered toy for something awesome.</p>
+<p>From the electronics perspective, I found a little PCB with a single COB chip inside that was in charge of sound, sensing and actuation. Furthermore, there are 4 switches (3 to detect button press/lock events and one to detect a successful button release event), a motor (to drive the release mechanism) and a speaker. The thing to do was obvious ... replace the PCB with some microcontroller and use this beautifully overengineered toy for something awesome.</p>
 
 
 
-<p>I had my workbench littered with various LCDs from a previous project so it took only a short amount of time to find one with the right size (Nokia 5110), cut a hole in the ball and expoxy it in place.</p>
+<p>I had my workbench littered with various LCDs from a previous project so it took only a short amount of time to find one with the right size (Nokia 5110), cut a hole in the ball and epoxy it in place.</p>
 
 <p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/lcd_epoxy.jpg"></p>
 
@@ -64,7 +65,10 @@
 <p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/arduino_uln2.jpg"></p>
 
 
-<p>The electronics part is very simple really ... I put an ULN2003 on a small protoyping board and soldered it upside down onto the Arduino Mini Pro (the reset switch still works that way btw). The ULN2003 is used to drive the motor, the speaker as well as LCD. All the swiches are directly connected to Arduino's GPIO pins.</>
+<p>The electronics part is very simple really ... I put an ULN2003 on a small prototyping board and soldered it upside down onto the Arduino Mini Pro (the reset switch still works that way btw). The ULN2003 is used to drive the motor, the speaker as well as LCD.</p>
+
+<p>All the switches are directly connected to Arduino's GPIO pins whereby I added 4 10k Ohm pull-down resistors to each input. The other terminals of the switches are connected to VCC.  I also put a 10 Ohm resistor between the ULN and the speaker to delay my kids' first tinnitus experience to their first rock concert.</p>
+
 
   <p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/open_arduino.jpg"></p>
 
@@ -73,15 +77,16 @@
 
 <h2>Software</h2>
 
-<p>The game I came up with is rather simple ... but in a good way. I wanted to build something that allows the kids to take mathematics into their own hands (literaly). For it to have any chance at all, it also had to be fun and approachable. It works like this: random mathematics questions are presented and three possible answers can be selected using one of the three buttons.<br>
+<p>The game I came up with is rather simple ... but in a good way. I wanted to build something that allows the kids to take mathematics into their own hands (literally). For it to have any chance at all, it also had to be fun and approachable. It works like this: random mathematics questions are presented and three possible answers can be selected using one of the three buttons.<br>
 <br>There is a choice of multiplication, addition and subtraction questions. To spice things up, visuals and sound effects let the player know if the answer is correct or not (check out the video at the end).</p>
-
-<p>I later added a level system that works like this (not shown in the video): If a player scores five correct answers in a row, the level is increased by one. The level hereby represents the numberspace the random questions are generated from. For example, level 5 in addion would mean the two summands are within the interval 0-5. Hence, the difficulty of the game adapts to the abilities of the player.</p>
 
 <p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/open_lcd_hack.jpg"></p>
 
-<p>I was bit anxious that the kids would just see it as another goofy giggles and ignore it shortly after. But as it turns out, the toy is one of the few things that can compete with the Frozen franchize in the focus group between 3 and 6 (the biggest honnor there is).<br>
-<br>I also like the fact that it is dealing well with frustration. When the kids get fed up with it, they slamm in the buttons, throw it on the carpet, press all buttons at once or simply sit on it ... the goofy takes it all.</p>
+<p>I later added a level system that works like this (not shown in the video): If a player scores five correct answers in a row, the level is increased by one. The level hereby represents the number-space the random questions are generated from. For example, level 5 in addition would mean the two summands are within the interval 0-5. Hence, the difficulty of the game adapts to the abilities of the player.</p>
+
+
+<p>I was a bit anxious that the kids would just see it as another goofy giggles and ignore it. But as it turns out, the combination of power-on-to-gameplay in 5 seconds as well as funny sounds and graphics hit the mark somehow. My 3 and 5 year old just love to pick it up after lunch, sit on the sofa and play a few rounds together. I couldn't have hoped for a better response.<br>
+<br>One key element of the success is also the Giggles ability to deal with frustration. When the kids get fed up with it, they slam in the buttons, throw it on the carpet, press all buttons at once or simply sit on it ... the Giggles takes it all.</p>
 
 <p>The video below shows an intermediate software version without the player and/or level system (see code).</p>
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/B7vLmgH2PHQ" frameborder="0" allowfullscreen></iframe></center>
