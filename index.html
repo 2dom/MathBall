@@ -30,7 +30,7 @@
       <section id="main_content" class="inner">
         <h2>Hacking some sense into the Little Tikes Goofy Giggles ...</h2>
 
-<p><img src="https://raw.github.com/2dom/GreatBallsOfFire/master/pics/small_ball_light.jpg" alt="Ball Daylight"> </p>
+<p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/title.jpeg" alt="Ball Daylight"> </p>
 <p>The Little Tikes Goofy Giggles is a really strange toy. The whole thing is obviously designed to attract the attention of overstimulated 2-3 three year olds by being colorful, loud and fun. It succeeds in some respect by grabbing one's attention but unfortunately the fun is short lived ... all it does is giggle and go plop!</p>
 
 <p>However, the giggles has some overly complex internals that beg to be hacked. So when my kids and wife sorted it out to be binned I decided to give it a second chance. <br>I had a single free weekend to turn it into something useful ...</p>
@@ -48,17 +48,25 @@
 
 <h2>Hardware</h2>
 
-<p>The goofy giggles has a few things going for it ... it has three buttons, a battery compartment, a speaker, overly complex mechanics as well as a fancy release mechanism that allows the buttons to pop back out again. On top of that, it appears to be indestructable since it survived the steep-upper-staircase-crash-test a few times.</p>
+<p>The goofy giggles has a few things going for it ... it has three buttons, a battery compartment, a speaker, overly complex mechanics as well as a fancy release mechanism that allows the buttons to pop back out again. On top of that, it appears to be indestructible since it survived the steep-upper-staircase-crash-test a few times.</p>
 
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Invader_in_Argentina.jpg"></p>
 
-<p>From the electronics perspective, I found a little PCB with a single COB chip inside that was in charge of sound, sensing and actuation. Appart from that I found 4 switches (3 to detect button press/lock events and one to detect a successfull button release event), a motor (to drive the release machanism) and a speaker. The thing to do was obvious ... replace the PCB with some microcontroller and use this beautifully overengineered toy for something awesome.</p>
+<p>From the electronics perspective, I found a little PCB with a single COB chip inside that was in charge of sound, sensing and actuation. Apart from that I found 4 switches (3 to detect button press/lock events and one to detect a successful button release event), a motor (to drive the release mechanism) and a speaker. The thing to do was obvious ... replace the PCB with some microcontroller and use this beautifully overengineered toy for something awesome.</p>
 
-<p><img src="https://raw.github.com/2dom/GreatBallsOfFire/master/pics/small_projector_closeup.jpg" alt="Projector closeup"></p>
+
 
 <p>I had my workbench littered with various LCDs from a previous project so it took only a short amount of time to find one with the right size (Nokia 5110), cut a hole in the ball and expoxy it in place.</p>
 
-<p>As the brains I chose an Arduino Mini Pro knock-off from china, partly because I wanted a low power design and partly because I didn't know if some of the code I wanted to use would work with my favorite ESP8266. The electronics part is very simple really ... I put an ULN2003 on a small protoyping board and soldered it upside down onto the Arduino Mini Pro (the reset switch still works that way btw). The ULN2003 is used to drive the motor, the speaker as well as LCD. All the swiches are directly connected to Arduino's GPIO pins.</>
+<p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/lcd_epoxy.jpg"></p>
+
+
+<p>As the brains I chose an Arduino Mini Pro knock-off from china, partly because I wanted a low power design and partly because I didn't know if some of the code I wanted to use would work with my favorite ESP8266.</p>
+<p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/arduino_uln2.jpg"></p>
+
+
+<p>The electronics part is very simple really ... I put an ULN2003 on a small protoyping board and soldered it upside down onto the Arduino Mini Pro (the reset switch still works that way btw). The ULN2003 is used to drive the motor, the speaker as well as LCD. All the swiches are directly connected to Arduino's GPIO pins.</>
+
+  <p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/open_arduino.jpg"></p>
 
 <p>Finally, I used some filler and sandpaper to smoothen the gap between the LCD and the plastic. A lousy paint job and voilà ... hardware done.</p>
 
@@ -70,7 +78,7 @@
 
 <p>I later added a level system that works like this (not shown in the video): If a player scores five correct answers in a row, the level is increased by one. The level hereby represents the numberspace the random questions are generated from. For example, level 5 in addion would mean the two summands are within the interval 0-5. Hence, the difficulty of the game adapts to the abilities of the player.</p>
 
-<img src="https://raw.github.com/2dom/GreatBallsOfFIre/master/pics/LCD_cutout.jpg" alt="LCD cutout"> </p>
+<p><img src="https://raw.githubusercontent.com/2dom/MathBall/master/pics/open_lcd_hack.jpg"></p>
 
 <p>I was bit anxious that the kids would just see it as another goofy giggles and ignore it shortly after. But as it turns out, the toy is one of the few things that can compete with the Frozen franchize in the focus group between 3 and 6 (the biggest honnor there is).<br>
 <br>I also like the fact that it is dealing well with frustration. When the kids get fed up with it, they slamm in the buttons, throw it on the carpet, press all buttons at once or simply sit on it ... the goofy takes it all.</p>
